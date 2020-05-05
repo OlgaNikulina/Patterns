@@ -15,8 +15,11 @@ public class RegistrationTest {
     }
 
     @Test
-    void shouldPreventSendRequestMultipleTimes(){
+    void shouldTest(){
         String name = faker.name().fullName();
         String phone = faker.phoneNumber().phoneNumber();
+
+
+
     }
 }
