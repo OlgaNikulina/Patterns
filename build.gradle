@@ -22,6 +22,8 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok:1.18.12'
     testCompileOnly 'org.projectlombok:lombok:1.18.12'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.12'
+    testRuntimeOnly 'org.slf4j:slf4j-simple:1.7.30'
+    implementation 'org.jetbrains:annotations:15.0'
 }
 
 test {
