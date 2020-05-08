@@ -10,7 +10,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class LoginPage4 {
+public class LoginPage7 {
     public void validLogin(DataGenerator.Registration registration) {
         $("[placeholder='Город']").setValue(registration.getLocation());
         $("span.menu-item__control").click();
@@ -21,6 +21,6 @@ public class LoginPage4 {
         $("[name='phone']").setValue(registration.getPhone());
         $("span[class='checkbox__text']").click();
         $$("button").find(exactText("Забронировать")).click();
-        $("<span class=\"input__sub\">Неверно введена дата</span>").shouldBe(visible);
+        $("<span class=\"input__sub\">Поле обязательно для заполнения</span>").shouldBe(visible);
     }
 }

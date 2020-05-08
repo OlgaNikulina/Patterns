@@ -23,18 +23,22 @@ public class DataGenerator {
     }
 
     public static Registration getThirdVariantOfRegistration() {
-        return new Registration("M", "12-05-2020", "Александр Михайлов", "+79123654789");
+        return new Registration("L", "12-05-2020", "Александр Михайлов", "+79123654789");
     }
 
     public static Registration getFourthVariantOfRegistration() {
-        return new Registration("Москва", "24.25.4242", "L", "+79123654789");
+        return new Registration("Москва", "24.25.4242", "Александр Михайлов", "+79123654789");
     }
 
     public static Registration getFifthVariantOfRegistration() {
-        return new Registration("Москва", "12-05-2020", "Александр Михайлов", "+");
+        return new Registration("Москва", "12-05-2020", "L", "+");
     }
 
     public static Registration getSixthVariantOfRegistration() {
+        return new Registration("Москва", "12-05-2020", "Александр Михайлов", "+");
+    }
+
+    public static Registration getSeventhVariantOfRegistration() {
         return new Registration("", "", "", "");
     }
 }

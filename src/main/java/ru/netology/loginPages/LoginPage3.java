@@ -21,6 +21,6 @@ public class LoginPage3 {
         $("[name='phone']").setValue(registration.getPhone());
         $("span[class='checkbox__text']").click();
         $$("button").find(exactText("Забронировать")).click();
-        $("div.notification__title").shouldBe(visible);
+        $("<span class=\"input__sub\">Доставка в выбранный город недоступна</span>").shouldBe(visible);
     }
 }

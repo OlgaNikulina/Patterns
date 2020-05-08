@@ -21,6 +21,6 @@ public class LoginPage5 {
         $("[name='phone']").setValue(registration.getPhone());
         $("span[class='checkbox__text']").click();
         $$("button").find(exactText("Забронировать")).click();
-        $("div.notification__title").shouldBe(visible);
+        $("<span class=\"input__sub\">Имя и Фамилия указаные неверно. Допустимы только русские буквы, пробелы и дефисы.</span>").shouldBe(visible);
     }
 }
