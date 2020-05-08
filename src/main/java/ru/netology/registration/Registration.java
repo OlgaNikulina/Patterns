@@ -1,4 +1,4 @@
-package ru.netology.loginPages.registration;
+package ru.netology.registration;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;

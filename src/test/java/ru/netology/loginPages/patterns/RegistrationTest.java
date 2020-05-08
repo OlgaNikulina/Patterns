@@ -5,7 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.netology.loginPages.LoginPage;
 import ru.netology.loginPages.LoginPage2;
-import ru.netology.loginPages.dataGenerator.DataGenerator;
+import ru.netology.dataGenerator.DataGenerator;
 import java.util.Locale;
 import static com.codeborne.selenide.Selenide.*;
 

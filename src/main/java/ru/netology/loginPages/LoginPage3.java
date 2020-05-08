@@ -1,17 +1,16 @@
 package ru.netology.loginPages;
 
-import ru.netology.dataGenerator.DataGenerator;
-
-import static com.codeborne.selenide.Condition.exactText;
-import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.Condition.visible;
 import org.openqa.selenium.Keys;
+import ru.netology.dataGenerator.DataGenerator;
 
 import java.time.LocalDate;
 
+import static com.codeborne.selenide.Condition.exactText;
+import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
-public class LoginPage {
-
+public class LoginPage3 {
     public void validLogin(DataGenerator.Registration registration) {
         $("[placeholder='Город']").setValue(registration.getLocation());
         $("span.menu-item__control").click();

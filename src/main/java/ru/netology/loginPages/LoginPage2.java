@@ -1,7 +1,7 @@
 package ru.netology.loginPages;
 
 import org.openqa.selenium.Keys;
-import ru.netology.loginPages.dataGenerator.DataGenerator;
+import ru.netology.dataGenerator.DataGenerator;
 
 import java.time.LocalDate;
 
