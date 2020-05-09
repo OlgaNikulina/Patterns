@@ -1,69 +1,73 @@
-package ru.netology.loginPages.patterns;
+package ru.netology.patterns;
+
 import com.github.javafaker.Faker;
 import lombok.val;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ru.netology.loginPages.*;
+import org.openqa.selenium.Keys;
 import ru.netology.dataGenerator.DataGenerator;
+import ru.netology.loginPages.*;
 
-import java.util.Locale;
+import static com.codeborne.selenide.Condition.exactText;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
-
+import static com.codeborne.selenide.Selenide.$;
 
 public class RegistrationTest {
-    DataGenerator.Registration registration = new DataGenerator.Registration("", "", "", "");
-
-    @BeforeEach
-    void setUpAll() {
-        Faker faker = new Faker(new Locale("ru"));
-        String name = faker.name().fullName();
-        String phone = faker.phoneNumber().phoneNumber();
-    }
+    Faker faker;
 
     @Test
-    void shouldTestWithData() {
+    void shouldSendFormIfValuesCorrect() {
         open("http://localhost:9999");
-        val loginPage = new LoginPage();
-        val Registration = DataGenerator.getRegistration();
+        $("[placeholder='Город']").setValue(faker.address().cityName());
+        $("span.menu-item__control").click();
+        $("[placeholder='Дата встречи']").sendKeys(Keys.CONTROL + "a");
+        $("[placeholder='Дата встречи']").sendKeys(Keys.DELETE);
+        $("[placeholder='Дата встречи']").setValue(String.valueOf(faker.date()));
+        $("[name='name']").setValue(String.valueOf(faker.name()));
+        $("[name='phone']").setValue(String.valueOf(faker.phoneNumber()));
+        $("span[class='checkbox__text']").click();
+        $$("button").find(exactText("Забронировать")).click();
+        $("div.notification__title").shouldBe(visible);
     }
 
     @Test
-    void shouldTestWithOtherData() {
+    void shouldSendFormWithOtherDate() {
         open("http://localhost:9999");
         val loginPage = new LoginPage2();
         val Registration = DataGenerator.getOtherRegistration();
     }
 
     @Test
-    void shouldTestWithThirdVariant() {
+    void shouldNotSendFormWithOneEnglishLetterInLocationField() {
         open("http://localhost:9999");
         val loginPage = new LoginPage3();
         val Registration = DataGenerator.getThirdVariantOfRegistration();
     }
 
     @Test
-    void shouldTestWithFourthVariant() {
+    void shouldNotSendFormWithInvalidDate() {
         open("http://localhost:9999");
         val loginPage = new LoginPage4();
         val Registration = DataGenerator.getFourthVariantOfRegistration();
     }
 
     @Test
-    void shouldTestWithFifthVariant() {
+    void shouldNotSendFormWithOneEnglishLetterInNameField() {
         open("http://localhost:9999");
         val loginPage = new LoginPage5();
         val Registration = DataGenerator.getFifthVariantOfRegistration();
     }
 
     @Test
-    void shouldTestWithSixthVariant() {
+    void shouldNotSendFormWithPlusInPhoneField() {
         open("http://localhost:9999");
         val loginPage = new LoginPage6();
         val Registration = DataGenerator.getSixthVariantOfRegistration();
     }
 
     @Test
-    void shouldTestWithSeventhVariant() {
+    void shouldNotSendFormWithEmptyFields() {
         open("http://localhost:9999");
         val loginPage = new LoginPage7();
         val Registration = DataGenerator.getSeventhVariantOfRegistration();
