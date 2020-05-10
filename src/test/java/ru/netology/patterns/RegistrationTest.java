@@ -1,75 +1,117 @@
 package ru.netology.patterns;
 
-import com.github.javafaker.Faker;
-import lombok.val;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
 import ru.netology.dataGenerator.DataGenerator;
 import ru.netology.loginPages.*;
 
-import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.Selenide.$;
 
 public class RegistrationTest {
-    Faker faker;
 
     @Test
     void shouldSendFormIfValuesCorrect() {
+        LoginPage loginPage = new LoginPage();
+        DataGenerator.Registration dataGenerator = DataGenerator.getRegistration();
         open("http://localhost:9999");
-        $("[placeholder='Город']").setValue(faker.address().cityName());
-        $("span.menu-item__control").click();
-        $("[placeholder='Дата встречи']").sendKeys(Keys.CONTROL + "a");
-        $("[placeholder='Дата встречи']").sendKeys(Keys.DELETE);
-        $("[placeholder='Дата встречи']").setValue(String.valueOf(faker.date()));
-        $("[name='name']").setValue(String.valueOf(faker.name()));
-        $("[name='phone']").setValue(String.valueOf(faker.phoneNumber()));
-        $("span[class='checkbox__text']").click();
-        $$("button").find(exactText("Забронировать")).click();
-        $("div.notification__title").shouldBe(visible);
+        loginPage.getCityField().setValue(dataGenerator.getLocation());
+        loginPage.getMenuItem().click();
+        loginPage.getDateField().sendKeys(Keys.CONTROL + "a");
+        loginPage.getDateField().sendKeys(Keys.DELETE);
+        loginPage.getDateField().setValue(dataGenerator.getDate());
+        loginPage.getNameField().setValue(dataGenerator.getName());
+        loginPage.getPhoneField().setValue(dataGenerator.getPhone());
+        loginPage.getCheckBox().click();
+        loginPage.getButton().click();
+        loginPage.getSuccessNotification().shouldBe(visible);
     }
 
     @Test
-    void shouldSendFormWithOtherDate() {
+    void shouldSendFormWithEmptyFields() {
+        LoginPage loginPage = new LoginPage();
+        DataGenerator.Registration dataGenerator = DataGenerator.getRegistrationWithEmptyFields();
         open("http://localhost:9999");
-        val loginPage = new LoginPage2();
-        val Registration = DataGenerator.getOtherRegistration();
+        loginPage.getCityField().setValue(dataGenerator.getLocation());
+        loginPage.getCityField().sendKeys(Keys.TAB);
+        loginPage.getDateField().sendKeys(Keys.CONTROL + "a");
+        loginPage.getDateField().sendKeys(Keys.DELETE);
+        loginPage.getDateField().setValue(dataGenerator.getDate());
+        loginPage.getDateField().sendKeys(Keys.TAB);
+        loginPage.getNameField().setValue(dataGenerator.getName());
+        loginPage.getNameField().sendKeys(Keys.TAB);
+        loginPage.getPhoneField().setValue(dataGenerator.getPhone());
+        loginPage.getPhoneField().sendKeys(Keys.TAB);
+        loginPage.getCheckBox().click();
+        loginPage.getButton().click();
+        loginPage.getGetNotificationRequiredField().shouldBe(visible);
     }
 
     @Test
     void shouldNotSendFormWithOneEnglishLetterInLocationField() {
+        LoginPage loginPage = new LoginPage();
+        DataGenerator.Registration dataGenerator = DataGenerator.getRegistrationWithOneEnglishLetterInLocationField();
         open("http://localhost:9999");
-        val loginPage = new LoginPage3();
-        val Registration = DataGenerator.getThirdVariantOfRegistration();
+        loginPage.getCityField().setValue(dataGenerator.getLocation());
+        loginPage.getCityField().sendKeys(Keys.TAB);
+        loginPage.getDateField().sendKeys(Keys.CONTROL + "a");
+        loginPage.getDateField().sendKeys(Keys.DELETE);
+        loginPage.getDateField().setValue(dataGenerator.getDate());
+        loginPage.getNameField().setValue(dataGenerator.getName());
+        loginPage.getPhoneField().setValue(dataGenerator.getPhone());
+        loginPage.getCheckBox().click();
+        loginPage.getButton().click();
+        loginPage.getGetNotificationDeliveryUnavailable().shouldBe(visible);
     }
 
     @Test
     void shouldNotSendFormWithInvalidDate() {
+        LoginPage loginPage = new LoginPage();
+        DataGenerator.Registration dataGenerator = DataGenerator.getRegistrationWithInvalidDate();
         open("http://localhost:9999");
-        val loginPage = new LoginPage4();
-        val Registration = DataGenerator.getFourthVariantOfRegistration();
+        loginPage.getCityField().setValue(dataGenerator.getLocation());
+        loginPage.getMenuItem().click();
+        loginPage.getDateField().sendKeys(Keys.CONTROL + "a");
+        loginPage.getDateField().sendKeys(Keys.DELETE);
+        loginPage.getDateField().setValue(dataGenerator.getDate());
+        loginPage.getNameField().setValue(dataGenerator.getName());
+        loginPage.getPhoneField().setValue(dataGenerator.getPhone());
+        loginPage.getCheckBox().click();
+        loginPage.getButton().click();
+        loginPage.getGetNotificationOrderWithDateIsNotPossible().shouldBe(visible);
     }
 
     @Test
     void shouldNotSendFormWithOneEnglishLetterInNameField() {
+        LoginPage loginPage = new LoginPage();
+        DataGenerator.Registration dataGenerator = DataGenerator.getRegistrationWithOneEnglishLetterInNameField();
         open("http://localhost:9999");
-        val loginPage = new LoginPage5();
-        val Registration = DataGenerator.getFifthVariantOfRegistration();
+        loginPage.getCityField().setValue(dataGenerator.getLocation());
+        loginPage.getMenuItem().click();
+        loginPage.getDateField().sendKeys(Keys.CONTROL + "a");
+        loginPage.getDateField().sendKeys(Keys.DELETE);
+        loginPage.getDateField().setValue(dataGenerator.getDate());
+        loginPage.getNameField().setValue(dataGenerator.getName());
+        loginPage.getPhoneField().setValue(dataGenerator.getPhone());
+        loginPage.getCheckBox().click();
+        loginPage.getButton().click();
+        loginPage.getGetNotificationNameIncorrect().shouldBe(visible);
     }
 
     @Test
     void shouldNotSendFormWithPlusInPhoneField() {
+        LoginPage loginPage = new LoginPage();
+        DataGenerator.Registration dataGenerator = DataGenerator.getRegistrationWithPlusInPhoneField();
         open("http://localhost:9999");
-        val loginPage = new LoginPage6();
-        val Registration = DataGenerator.getSixthVariantOfRegistration();
-    }
-
-    @Test
-    void shouldNotSendFormWithEmptyFields() {
-        open("http://localhost:9999");
-        val loginPage = new LoginPage7();
-        val Registration = DataGenerator.getSeventhVariantOfRegistration();
+        loginPage.getCityField().setValue(dataGenerator.getLocation());
+        loginPage.getMenuItem().click();
+        loginPage.getDateField().sendKeys(Keys.CONTROL + "a");
+        loginPage.getDateField().sendKeys(Keys.DELETE);
+        loginPage.getDateField().setValue(dataGenerator.getDate());
+        loginPage.getNameField().setValue(dataGenerator.getName());
+        loginPage.getPhoneField().setValue(dataGenerator.getPhone());
+        loginPage.getCheckBox().click();
+        loginPage.getButton().click();
+        loginPage.getSuccessNotification().shouldBe(visible);
     }
 }
