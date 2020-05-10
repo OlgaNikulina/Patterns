@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
 import ru.netology.dataGenerator.DataGenerator;
 import ru.netology.loginPages.*;
-
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 
