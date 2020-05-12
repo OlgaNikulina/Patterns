@@ -27,6 +27,31 @@ public class RegistrationTest {
     }
 
     @Test
+    void shouldSendFormWithOtherDate() {
+        LoginPage loginPage = new LoginPage();
+        DataGenerator.Registration dataGenerator = DataGenerator.getRegistration();
+        open("http://localhost:9999");
+        loginPage.getCityField().setValue(dataGenerator.getLocation());
+        loginPage.getMenuItem().click();
+        loginPage.getDateField().sendKeys(Keys.CONTROL + "a");
+        loginPage.getDateField().sendKeys(Keys.DELETE);
+        loginPage.getDateField().setValue(dataGenerator.getDate());
+        loginPage.getNameField().setValue(dataGenerator.getName());
+        loginPage.getPhoneField().setValue(dataGenerator.getPhone());
+        loginPage.getCheckBox().click();
+        loginPage.getButton().click();
+        loginPage.getSuccessNotification().shouldBe(visible);
+        DataGenerator.Registration dataGenerator1 = DataGenerator.getRegistrationWithOtherDate();
+        loginPage.getDateField().sendKeys(Keys.CONTROL + "a");
+        loginPage.getDateField().sendKeys(Keys.DELETE);
+        loginPage.getDateField().setValue(dataGenerator.getDate());
+        loginPage.getButton().click();
+        loginPage.getGetNotificationOverride().shouldBe(visible);
+        loginPage.getOverrideButton().click();
+        loginPage.getGetSuccessNotificationOverride().shouldBe(visible);
+    }
+
+    @Test
     void shouldSendFormWithEmptyFields() {
         LoginPage loginPage = new LoginPage();
         DataGenerator.Registration dataGenerator = DataGenerator.getRegistrationWithEmptyFields();
@@ -111,6 +136,6 @@ public class RegistrationTest {
         loginPage.getPhoneField().setValue(dataGenerator.getPhone());
         loginPage.getCheckBox().click();
         loginPage.getButton().click();
-        loginPage.getSuccessNotification().shouldBe(visible);
+        loginPage.getGetNotificationNumberIncorrect().shouldBe(visible);
     }
 }

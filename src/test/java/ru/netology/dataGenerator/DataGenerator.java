@@ -31,6 +31,15 @@ public class DataGenerator {
         return futureDate;
     }
 
+    static String otherDateSet() {
+        LocalDate dates = LocalDate.now();
+        LocalDate localDate;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        localDate = dates.plusDays(5);
+        String futureDate = formatter.format(localDate.plusDays(5));
+        return futureDate;
+    }
+
     static String generateRandomLocation() {
         String[] cities = new String[]{"Москва", "Волгоград", "Воронеж"};
         Random random = new Random();
@@ -51,6 +60,11 @@ public class DataGenerator {
     public static Registration getRegistration() {
         return new Registration(generateRandomLocation(), dateSet(), generateRandomName(), generateRandomPhone());
     }
+
+    public static Registration getRegistrationWithOtherDate() {
+        return new Registration(generateRandomLocation(), otherDateSet(), generateRandomName(), generateRandomPhone());
+    }
+
 
     public static Registration getRegistrationWithEmptyFields() {
         return new Registration("", "", "", "");
