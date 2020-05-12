@@ -18,8 +18,8 @@ public class LoginPage {
     private SelenideElement checkBox = $("span[class='checkbox__text']");
     private SelenideElement button = $$("button").find(exactText("Запланировать"));
     private SelenideElement successNotification = $("div.notification__title");
-    private SelenideElement getNotificationRequiredField = $("#root > div > form > fieldset > div:nth-child(1) > div > span > span > span.input__sub");
-    private SelenideElement getNotificationDeliveryUnavailable = $("#root > div > form > fieldset > div:nth-child(1) > div > span > span > span.input__sub");
-    private SelenideElement getNotificationOrderWithDateIsNotPossible = $("#root > div > form > fieldset > div:nth-child(2) > span > span > span > span > span.input__sub");
-    private SelenideElement getNotificationNameIncorrect = $("#root > div > form > fieldset > div:nth-child(3) > span > span > span.input__sub");
+    private SelenideElement getNotificationRequiredField = $("[data-test-id='city'] .input__sub");
+    private SelenideElement getNotificationDeliveryUnavailable = $("[data-test-id='city'] .input__sub");
+    private SelenideElement getNotificationOrderWithDateIsNotPossible = $("[data-test-id='date'] .input__sub");
+    private SelenideElement getNotificationNameIncorrect = $("[data-test-id='name'] .input__sub");
 }
