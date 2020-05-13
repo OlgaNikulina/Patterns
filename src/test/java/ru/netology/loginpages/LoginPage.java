@@ -1,4 +1,4 @@
-package ru.netology.loginPages;
+package ru.netology.loginpages;
 
 import com.codeborne.selenide.SelenideElement;
 import lombok.Value;
@@ -26,5 +26,4 @@ public class LoginPage {
     private SelenideElement getNotificationOverride = $("div.notification__title");
     private SelenideElement overrideButton = $$("button").find(exactText("Перепланировать"));
     private SelenideElement getSuccessNotificationOverride = $("div.notification__title");
-
 }

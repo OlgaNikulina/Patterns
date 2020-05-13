@@ -2,8 +2,8 @@ package ru.netology.patterns;
 
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
-import ru.netology.dataGenerator.DataGenerator;
-import ru.netology.loginPages.*;
+import ru.netology.datagenerator.DataGenerator;
+import ru.netology.loginpages.*;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 
