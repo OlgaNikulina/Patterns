@@ -22,7 +22,7 @@ public class LoginPage {
     private SelenideElement getNotificationDeliveryUnavailable = $("[data-test-id='city'] .input__sub");
     private SelenideElement getNotificationOrderWithDateIsNotPossible = $("[data-test-id='date'] .input__sub");
     private SelenideElement getNotificationNameIncorrect = $("[data-test-id='name'] .input__sub");
-    private SelenideElement getNotificationNumberIncorrect = $("[data-test-id='phone'] .input__sub");
+    private SelenideElement getNotificationNumberIncorrect = $$("error").find(exactText("Номер телефона введем некорректно"));
     private SelenideElement getNotificationOverride = $("div.notification__title");
     private SelenideElement overrideButton = $$("button").find(exactText("Перепланировать"));
     private SelenideElement getSuccessNotificationOverride = $("div.notification__title");
