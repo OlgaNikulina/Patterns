@@ -6,7 +6,6 @@ import lombok.Value;
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Selenide.*;
 
-
 @Value
 public class LoginPage {
 
