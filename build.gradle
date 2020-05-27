@@ -2,11 +2,10 @@ plugins {
     id 'java'
     id "io.freefair.lombok" version "5.1.0"
     id 'io.qameta.allure' version '2.8.1'
-}
+    }
 
 group 'ru.netology'
 version '1.0-SNAPSHOT'
-
 allure {
     autoconfigure = true
     version = '2.13.3'
