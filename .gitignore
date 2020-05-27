@@ -1,4 +1,6 @@
 HELP.md
+.allure
+.allure/allure-2.13.3
 .gradle
 build/
 !gradle/wrapper/gradle-wrapper.jar
